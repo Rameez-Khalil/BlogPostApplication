@@ -1,0 +1,6 @@
+Repository pattern: 
+	We isolate the data access logic, so if there is any change the rest of the things can get automatically updated.
+	Create interface, implement the interface.
+	Inject the implementation into our services container, so controllers can utilize it.
+
+	

@@ -1,4 +1,5 @@
 using Bloggie.Web.Data;
+using Bloggie.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,10 @@ builder.Services.AddControllersWithViews();
 
 //Add DbContext as a dependency.
 builder.Services.AddDbContext<BloggieDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDBConnectionString"))); 
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDBConnectionString")));
 
+
+builder.Services.AddScoped<ITagRepository, TagRepository>(); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

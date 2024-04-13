@@ -1,19 +1,25 @@
 ﻿using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
 using Bloggie.Web.Models.VIewModels;
+using Bloggie.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Controllers
 {
     public class AdminTagsController : Controller
 
     {
-        private BloggieDbContext bloggieDbContext; 
+        private BloggieDbContext bloggieDbContext;
+        private readonly ITagRepository tagRepository;
+
+
 
         //CONSTRUCTOR INJECTION: 
-        public AdminTagsController(BloggieDbContext bloggieDbContext)
+        public AdminTagsController(ITagRepository tagRepository)
         {
-            this.bloggieDbContext = bloggieDbContext;
+          
+            this.tagRepository = tagRepository;
         }
         [HttpGet]
 
@@ -25,7 +31,7 @@ namespace Bloggie.Web.Controllers
 
         [HttpPost]
        
-        public IActionResult Add(AddTagRequest addTagRequest)
+        public async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
 
             //Mapping the tag.
@@ -36,27 +42,25 @@ namespace Bloggie.Web.Controllers
             };
 
             //Store the tag.
-            bloggieDbContext.Tags.Add(tag);
+            await tagRepository.AddAsync(tag);
 
-            //
-            bloggieDbContext.SaveChanges();
             return RedirectToAction("List"); 
         }
 
         [HttpGet]
         [ActionName("List")]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var tags = bloggieDbContext.Tags.ToList();
+            var tags = await tagRepository.GetAllAsync();
 
             //The result list will be passed to our view.
             return View(tags); 
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var tag = bloggieDbContext.Tags.FirstOrDefault(x => x.Id == id);
+            var tag = await tagRepository.GetAsync(id); 
 
             if (tag != null)
             {
@@ -71,11 +75,11 @@ namespace Bloggie.Web.Controllers
                 //Send the details back to the view.
                 return View(editTagDetails);
             }
-            return null;  
+            return View(null);  
         }
 
         [HttpPost]
-        public IActionResult Edit(EditTagRequest editTagRequest)
+        public async Task<IActionResult> Edit(EditTagRequest editTagRequest)
         {
             var tag = new Tag
             {
@@ -84,31 +88,30 @@ namespace Bloggie.Web.Controllers
                 DisplayName = editTagRequest.DisplayName
             };
 
-            var updatedTag = bloggieDbContext.Tags.Find(tag.Id); 
+            var updatedTag = await tagRepository.UpdateAsync(tag); 
             if(updatedTag != null)
             {
-                updatedTag.Name = tag.Name;
-                updatedTag.DisplayName = tag.DisplayName;
-                bloggieDbContext.SaveChanges();
-                return RedirectToAction("List");
+                //show success.
+                return RedirectToAction("List"); 
             }
-            return RedirectToAction("Edit", new { id = editTagRequest.Id }); 
-             
+            else
+            {
+                //show an error.
+            }
+            return RedirectToAction("Edit", new { id = editTagRequest.Id });
+
         }
 
         [HttpPost]
-        public IActionResult Delete(EditTagRequest editTagRequest)
+        public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
-            var tag = bloggieDbContext.Tags.Find(editTagRequest.Id); 
-            if(tag != null)
+           var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
+            if (deletedTag != null)
             {
-                bloggieDbContext.Tags.Remove(tag);
-                bloggieDbContext.SaveChanges(); 
-
-                //Success - Redirect to list page.
-                return RedirectToAction("List");
+                //show success
+                return RedirectToAction("List"); 
             }
-            return RedirectToAction("Edit", new {id = editTagRequest.Id});  
+            return RedirectToAction("Edit", new {id=editTagRequest.Id});
         }
     }
 }
