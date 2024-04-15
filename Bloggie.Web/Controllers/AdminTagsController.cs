@@ -10,7 +10,7 @@ namespace Bloggie.Web.Controllers
     public class AdminTagsController : Controller
 
     {
-        private BloggieDbContext bloggieDbContext;
+        
         private readonly ITagRepository tagRepository;
 
 
