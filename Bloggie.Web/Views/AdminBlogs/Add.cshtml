@@ -67,5 +67,9 @@
             <button type="submit" class="btn btn-dark">Save Blog</button>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Tags</label>
+            <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTag"></select>
+        </div>
     </form>
 </div>
