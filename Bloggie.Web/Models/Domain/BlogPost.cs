@@ -13,6 +13,6 @@
         public bool Visible { get; set; }
         public string FeaturedImageUrl { get; set; }
 
-        ICollection<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
