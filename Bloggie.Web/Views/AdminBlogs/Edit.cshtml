@@ -1,0 +1,95 @@
+﻿@model Bloggie.Web.Models.VIewModels.EditBlogRequest
+
+<div class="bg-secondary bg-opacity">
+    <div class="container">
+        <h3>Update Blog - Admin functionality</h3>
+    </div>
+</div>
+
+
+<div class="container">
+
+    @if (Model != null)
+    {
+        <form method="post">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    ID
+                </label>
+                <input class="form-control" type="text" id="id" asp-for="Id" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Heading
+                </label>
+                <input class="form-control" type="text" id="heading" asp-for="Heading" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Title
+                </label>
+                <input class="form-control" type="text" id="pageTitle" asp-for="PageTitle" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Content
+                </label>
+                <textarea class="form-control" type="text" id="textArea" asp-for="Content"> </textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Short Description
+                </label>
+                <input class="form-control" type="text" id="shortDescription" asp-for="ShortDescription" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Image URL
+                </label>
+                <input class="form-control" type="text" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    URL Hanle
+                </label>
+                <input class="form-control" type="text" id="urlHandle" asp-for="UrlHandle" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Published Date
+                </label>
+                <input class="form-control" type="date" id="publishedDate" asp-for="PublishedDate" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">
+                    Author
+                </label>
+                <input class="form-control" type="text" id="author" asp-for="Author" />
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="visible" asp-for="Visible">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Is Visible?
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-dark">Save Blog</button>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tags</label>
+                <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTags"></select>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>No records were found</p>
+    }
+
+ 
+</div>

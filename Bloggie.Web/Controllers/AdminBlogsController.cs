@@ -70,5 +70,49 @@ namespace Bloggie.Web.Controllers
             }
             return RedirectToAction("Add");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+
+            //Call to the repo.
+            var blogs = await blogRepository.GetAll();
+
+            return View(blogs); 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var blog = await blogRepository.GetAsync(id);
+            var tags = await tagRepository.GetAllAsync(); 
+
+            if (blog != null)
+            {
+                var updatedBlog = new EditBlogRequest
+                {
+                    Heading = blog.Heading,
+                    PageTitle = blog.PageTitle,
+                    Content = blog.Content,
+                    ShortDescription = blog.ShortDescription,
+                    UrlHandle = blog.UrlHandle,
+                    PublishedDate = blog.PublishedDate,
+                    Author = blog.Author,
+                    Visible = blog.Visible,
+                    FeaturedImageUrl = blog.FeaturedImageUrl,
+                    Tags = tags.Select(x => new SelectListItem
+                    {
+                        Text = x.Name, Value = x.Id.ToString()
+                    }), 
+
+                    SelectedTags = blog.Tags.Select(x=>x.Id.ToString()).ToArray()
+                };
+                return View(updatedBlog);
+            }
+            
+
+
+            return View(null); 
+        }
     }
 }

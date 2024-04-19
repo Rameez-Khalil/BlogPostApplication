@@ -1,0 +1,55 @@
+﻿@model List<Bloggie.Web.Models.Domain.BlogPost>
+
+<div class="bg-opacity-10 bg-secondary">
+    <div class="container">
+        <h3>All Blogs - Admin Functionality</h3>
+    </div>
+</div>
+
+
+<div class="container py-5">
+    @if(Model.Any() && Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Heading</td>
+                     <td>Tags</td>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @foreach (var blog in Model)
+                {
+                    <tr>
+                        <td>@blog.Id</td>
+                        <td>@blog.Heading</td>
+
+                        <td>
+                            <div class="d-flex">
+                                @foreach (var tags in blog.Tags)
+                                {
+                                  <span class="badge bg-secondary">
+                                        @tags.Name
+                                  </span>  
+                                }
+                            </div>
+                           
+                        </td>
+                        <td>
+                            <a class="text-success" asp-action="Edit" asp-controller="AdminBlogs" asp-route-id="@blog.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <p>No records were found</p>
+    }
+
+</div>
