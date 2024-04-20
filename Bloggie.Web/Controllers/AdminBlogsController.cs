@@ -3,6 +3,8 @@ using Bloggie.Web.Models.VIewModels;
 using Bloggie.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 
 namespace Bloggie.Web.Controllers
 {
@@ -68,7 +70,7 @@ namespace Bloggie.Web.Controllers
                 blog.Tags = selectedTags; 
                 await blogRepository.AddAsync(blog);
             }
-            return RedirectToAction("Add");
+            return RedirectToAction("List");
         }
 
         [HttpGet]
@@ -114,5 +116,68 @@ namespace Bloggie.Web.Controllers
 
             return View(null); 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditBlogRequest editBlogRequest)
+        {
+            //map the incoming request.
+            var blogDomainModel = new BlogPost
+            {
+                Id = editBlogRequest.Id,
+                Heading = editBlogRequest.Heading,
+                PageTitle = editBlogRequest.PageTitle,
+                Content = editBlogRequest.Content,
+                ShortDescription = editBlogRequest.ShortDescription,
+                UrlHandle = editBlogRequest.UrlHandle,
+                PublishedDate = editBlogRequest.PublishedDate,
+                Author = editBlogRequest.Author,
+                Visible = editBlogRequest.Visible,
+                FeaturedImageUrl = editBlogRequest.FeaturedImageUrl
+            };
+
+
+            //map the selected tags.
+            var tags = new List<Tag>(); 
+
+            //loop through the selected tags coming in from the view.
+            foreach(var selectedTag in editBlogRequest.SelectedTags)
+            {
+                if (Guid.TryParse(selectedTag, out var tagId))
+                {
+                    var foundTag = await tagRepository.GetAsync(tagId); 
+                    if(foundTag != null) { 
+                         tags.Add(foundTag);
+                    }
+                }
+            }
+            blogDomainModel.Tags = tags;
+
+            //Submit the information into repo.
+            var updatedBlog = await blogRepository.UpdateAsync(blogDomainModel);
+
+
+            if (updatedBlog != null)
+            {
+                return RedirectToAction("List"); 
+            }
+
+            return View(null); 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EditBlogRequest editBlogRequest)
+        {
+
+            var deletedBlog = await blogRepository.DeleteAsync(editBlogRequest.Id); 
+            if(deletedBlog != null)
+            {
+                //success.
+                return RedirectToAction("List"); 
+            }
+
+            //show error.
+            return View("Edit", new {id = editBlogRequest.Id}); 
+        }
+       
     }
 }
