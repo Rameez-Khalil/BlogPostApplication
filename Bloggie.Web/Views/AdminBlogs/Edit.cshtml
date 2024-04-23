@@ -116,7 +116,9 @@
 @section Scripts{
     <script>
         
-        let editor = new FroalaEditor("#content");
+        let editor = new FroalaEditor("#content", {
+            imageUploadUrl: '/api/images'
+        });
 
         const uploadHandle = async (e) => {
             console.log(e.target.files[0]);
