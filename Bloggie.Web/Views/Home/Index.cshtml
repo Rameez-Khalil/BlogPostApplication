@@ -1,4 +1,4 @@
-﻿@model List<Bloggie.Web.Models.Domain.BlogPost>
+﻿@model Bloggie.Web.Models.VIewModels.HomeViewModel;
 
 @{
     ViewData["Title"] = "Home Page";
@@ -27,14 +27,31 @@
     </div>
 </div>
 
+<!--Tags show case area.-->
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            @if(Model!=null && Model.Tags.Any())
+            {
+                foreach(var tag in Model.Tags)
+                {
+                    <span class="badge bg-dark me-1">
+                        @tag.Name
+                    </span>
+                }
+            }
+        </div>
+    </div>
+</div>
 
 <!--Display all blogs.-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
-            @if(Model.Any() && Model != null)
+            @if(Model.BlogPosts.Any() && Model != null)
             {
-                foreach(var blogs in Model)
+                foreach(var blogs in Model.BlogPosts)
                 {
                     <div class="mb-5 bg-light box-shadow"> 
                         <img src="@blogs.FeaturedImageUrl" alt="@blogs.Heading" class="mb-2 d-block img-fluid"/>
