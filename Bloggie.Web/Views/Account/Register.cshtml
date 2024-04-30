@@ -1,0 +1,37 @@
+﻿@model Bloggie.Web.Models.VIewModels.RegisterViewModel
+
+<div class="container mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <h1 class="mb-3 h3">
+                Register
+            </h1>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input class="form-control" type="text" id="username" asp-for="Username"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" type="email" id="email" asp-for="Email" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-labem"> Password</label>
+                    <input class="form-control" type="password" id="password" asp-for="Password" />
+                </div>
+
+
+                <div class="mb-3">
+
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </form>
+
+        </div>
+       
+           
+    </div>
+</div>

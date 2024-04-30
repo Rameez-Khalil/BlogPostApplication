@@ -7,7 +7,7 @@ namespace Bloggie.Web.Data
     public class BloggieDbContext : DbContext
     {
         //We will overrie this options parameters from program file.
-        public BloggieDbContext(DbContextOptions options) : base(options)
+        public BloggieDbContext(DbContextOptions<BloggieDbContext> options) : base(options)
         {
         }
 
