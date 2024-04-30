@@ -20,9 +20,9 @@ namespace Bloggie.Web.Data
             //seed roles.
             //List of roles.
 
-            var adminRoleId = "123e4567-e89b-12d3-a456-426614174000";
-            var superAdminRoleId = "123e4567-e89b-12d3-a456-426614164000";
-            var userRoleId = "123e4567-e89b-12d3-a456-426614178000"; 
+            var adminRoleId = "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8";
+            var superAdminRoleId = "34085b0e-82f2-42e9-ba0b-bbab324e7a39";
+            var userRoleId = "6e8008e2-48e0-426f-bd41-02f0df118863"; 
 
             var roles = new List<IdentityRole>
             {
@@ -54,22 +54,24 @@ namespace Bloggie.Web.Data
             //Seed superadmin.
             //EF will insert the roles in our database. 
             builder.Entity<IdentityRole>().HasData(roles);
-
+            
 
             //Seed superadmin.
-            var superAdminId = "123e4567-e89b-12d3-a456-426614171000";
+            var superAdminId = "dbfd35c1-fb32-4209-84e1-f6772b5c713f";
             var superAdminUser = new IdentityUser
             {
+                Id = superAdminId, 
                 UserName = "superadmin@bloggie.com",
                 Email = "superadmin@bloggie.com",
                 NormalizedEmail = "superadmin@bloggie.com".ToUpper(),
-                NormalizedUserName = "superadmin@bloggie.com".ToUpper()
+                NormalizedUserName = "superadmin@bloggie.com".ToUpper(), 
+               
             };
-
+            
             //password hash.
-            superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(superAdminUser, "superadmin@123"); 
-
+            superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(superAdminUser, "superadmin@123");
             builder.Entity<IdentityUser>().HasData(superAdminUser);
+
 
 
             //Add roles to superadmin.

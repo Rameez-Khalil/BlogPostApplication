@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Bloggie.Web.Migrations.AuthDb
 {
     /// <inheritdoc />
-    public partial class CreatingAuthDb : Migration
+    public partial class UpdatedAuthDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -163,24 +163,24 @@ namespace Bloggie.Web.Migrations.AuthDb
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4f3f7fb1-dab6-49a2-b594-84c9d8795d92", "4f3f7fb1-dab6-49a2-b594-84c9d8795d92", "SuperAdmin", "SuperAdmin" },
-                    { "59ad7702-38a6-4b83-8fd6-68a6b6e8909d", "59ad7702-38a6-4b83-8fd6-68a6b6e8909d", "Admin", "Admin" },
-                    { "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3", "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3", "User", "User" }
+                    { "34085b0e-82f2-42e9-ba0b-bbab324e7a39", "34085b0e-82f2-42e9-ba0b-bbab324e7a39", "SuperAdmin", "SuperAdmin" },
+                    { "6e8008e2-48e0-426f-bd41-02f0df118863", "6e8008e2-48e0-426f-bd41-02f0df118863", "User", "User" },
+                    { "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8", "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8", "Admin", "Admin" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "5998687d-5de6-4f5f-a6da-62e26add0a7c", 0, "78497135-b5be-41cd-b71e-5c9708a5ab8b", "superadmin@bloggie.com", false, false, null, "SUPERADMIN@BLOGGIE.COM", "SUPERADMIN@BLOGGIE.COM", "AQAAAAIAAYagAAAAEPSRI6TW/yK4uwwyZeVvjW372XLwZZGRJLMDrXwhM+wjeHGPaKrD1WPRjSTh+lHaMA==", null, false, "966d9d1a-80a0-4f18-b9d3-75cc2512175d", false, "superadmin@bloggie.com" });
+                values: new object[] { "dbfd35c1-fb32-4209-84e1-f6772b5c713f", 0, "439b6c66-818e-4ebe-9702-c52fe2893bf3", "superadmin@bloggie.com", false, false, null, "SUPERADMIN@BLOGGIE.COM", "SUPERADMIN@BLOGGIE.COM", "AQAAAAIAAYagAAAAEJ8IIWmLX/BykNezKA3tTRv6oKErU8p5rHRtDyhK6oVXuWV/gNARr2ibMalrsrvRhQ==", null, false, "3138db84-407e-4312-b400-07d6f5500c8a", false, "superadmin@bloggie.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "4f3f7fb1-dab6-49a2-b594-84c9d8795d92", "a1e26855-0c91-4d15-8363-ef201d998ff9" },
-                    { "59ad7702-38a6-4b83-8fd6-68a6b6e8909d", "a1e26855-0c91-4d15-8363-ef201d998ff9" },
-                    { "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3", "a1e26855-0c91-4d15-8363-ef201d998ff9" }
+                    { "34085b0e-82f2-42e9-ba0b-bbab324e7a39", "dbfd35c1-fb32-4209-84e1-f6772b5c713f" },
+                    { "6e8008e2-48e0-426f-bd41-02f0df118863", "dbfd35c1-fb32-4209-84e1-f6772b5c713f" },
+                    { "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8", "dbfd35c1-fb32-4209-84e1-f6772b5c713f" }
                 });
 
             migrationBuilder.CreateIndex(

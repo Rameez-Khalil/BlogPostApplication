@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bloggie.Web.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20240429105708_Creating Auth Db")]
-    partial class CreatingAuthDb
+    [Migration("20240430005054_Updated Auth Db")]
+    partial class UpdatedAuthDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,22 +54,22 @@ namespace Bloggie.Web.Migrations.AuthDb
                     b.HasData(
                         new
                         {
-                            Id = "59ad7702-38a6-4b83-8fd6-68a6b6e8909d",
-                            ConcurrencyStamp = "59ad7702-38a6-4b83-8fd6-68a6b6e8909d",
+                            Id = "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8",
+                            ConcurrencyStamp = "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "4f3f7fb1-dab6-49a2-b594-84c9d8795d92",
-                            ConcurrencyStamp = "4f3f7fb1-dab6-49a2-b594-84c9d8795d92",
+                            Id = "34085b0e-82f2-42e9-ba0b-bbab324e7a39",
+                            ConcurrencyStamp = "34085b0e-82f2-42e9-ba0b-bbab324e7a39",
                             Name = "SuperAdmin",
                             NormalizedName = "SuperAdmin"
                         },
                         new
                         {
-                            Id = "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3",
-                            ConcurrencyStamp = "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3",
+                            Id = "6e8008e2-48e0-426f-bd41-02f0df118863",
+                            ConcurrencyStamp = "6e8008e2-48e0-426f-bd41-02f0df118863",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -167,17 +167,17 @@ namespace Bloggie.Web.Migrations.AuthDb
                     b.HasData(
                         new
                         {
-                            Id = "5998687d-5de6-4f5f-a6da-62e26add0a7c",
+                            Id = "dbfd35c1-fb32-4209-84e1-f6772b5c713f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "78497135-b5be-41cd-b71e-5c9708a5ab8b",
+                            ConcurrencyStamp = "439b6c66-818e-4ebe-9702-c52fe2893bf3",
                             Email = "superadmin@bloggie.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@BLOGGIE.COM",
                             NormalizedUserName = "SUPERADMIN@BLOGGIE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPSRI6TW/yK4uwwyZeVvjW372XLwZZGRJLMDrXwhM+wjeHGPaKrD1WPRjSTh+lHaMA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJ8IIWmLX/BykNezKA3tTRv6oKErU8p5rHRtDyhK6oVXuWV/gNARr2ibMalrsrvRhQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "966d9d1a-80a0-4f18-b9d3-75cc2512175d",
+                            SecurityStamp = "3138db84-407e-4312-b400-07d6f5500c8a",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@bloggie.com"
                         });
@@ -247,18 +247,18 @@ namespace Bloggie.Web.Migrations.AuthDb
                     b.HasData(
                         new
                         {
-                            UserId = "a1e26855-0c91-4d15-8363-ef201d998ff9",
-                            RoleId = "8d7c3f80-6a15-4e96-a4e9-fc3a7f0a92d3"
+                            UserId = "dbfd35c1-fb32-4209-84e1-f6772b5c713f",
+                            RoleId = "6e8008e2-48e0-426f-bd41-02f0df118863"
                         },
                         new
                         {
-                            UserId = "a1e26855-0c91-4d15-8363-ef201d998ff9",
-                            RoleId = "59ad7702-38a6-4b83-8fd6-68a6b6e8909d"
+                            UserId = "dbfd35c1-fb32-4209-84e1-f6772b5c713f",
+                            RoleId = "c0bd43a5-4c5f-44e7-9f8c-02a126d945d8"
                         },
                         new
                         {
-                            UserId = "a1e26855-0c91-4d15-8363-ef201d998ff9",
-                            RoleId = "4f3f7fb1-dab6-49a2-b594-84c9d8795d92"
+                            UserId = "dbfd35c1-fb32-4209-84e1-f6772b5c713f",
+                            RoleId = "34085b0e-82f2-42e9-ba0b-bbab324e7a39"
                         });
                 });
 
